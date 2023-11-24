@@ -1,13 +1,19 @@
 using Notes.Application;
 using Notes.Presentation;
 using Notes.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AppDbContext>(
+    optionsBuilder =>
+    {
+        string connectionString = builder.Configuration.GetConnectionString("ConnectionString")!;
+        optionsBuilder.UseSqlServer(connectionString);
+    });
 
 builder.Services
     .AddApplication()
@@ -16,7 +22,6 @@ builder.Services
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
