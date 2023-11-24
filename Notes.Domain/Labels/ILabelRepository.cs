@@ -2,11 +2,11 @@
 
 public interface ILabelRepository
 {
-    Task<Label> GetById(Guid id);
+    Task<Label?> GetByIdAsync(Guid id);
 
-    Task Add(string name);
+    void Add(Label label);
 
-    Task Update(Guid id, string name);
+    void Update(Label label);
 
-    Task Remove(Guid id);
+    void Remove(Label label);
 }

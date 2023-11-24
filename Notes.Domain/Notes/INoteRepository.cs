@@ -2,6 +2,6 @@
 
 public interface INoteRepository
 {
-    Task<Note> GetById(Guid id);
+    Task<Note?> GetByIdAsync(Guid id);
 
 }
