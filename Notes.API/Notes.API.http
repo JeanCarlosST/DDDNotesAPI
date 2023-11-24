@@ -1,0 +1,6 @@
+@DDDNotesAPI_HostAddress = http://localhost:5250
+
+GET {{DDDNotesAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
