@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Notes.Persistance;
+namespace Notes.Infrastructure;
 
 public class AppDbContext : DbContext
 {

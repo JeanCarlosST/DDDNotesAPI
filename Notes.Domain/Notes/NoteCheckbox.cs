@@ -2,16 +2,18 @@
 
 namespace Notes.Domain.Notes;
 
-internal class NoteCheckbox : Entity
+public class NoteCheckbox : Entity
 {
-    internal NoteCheckbox(Guid id, string text, bool isChecked) : base(id)
+    internal NoteCheckbox(Guid id, string text, bool isChecked, Guid noteId) : base(id)
     {
         Text = text;
         IsChecked = isChecked;
+        NoteId = noteId;
     }
 
     public string Text { get; private set; }
     public bool IsChecked { get; private set; }
+    public Guid NoteId { get; init; }
 
     public void UpdateText(string text)
     {

@@ -8,36 +8,39 @@ public sealed class Note : AggregateRoot
     private Note(
         Guid id,
         string title,
-        Label label) : base(id)
+        Guid? labelId) : base(id)
     {
         Title = title;
-        Label = label;
+        LabelId = labelId;
     }
 
     public string Title { get; private set; }
-    public Label Label { get; private set; }
+    public Guid? LabelId { get; private set; }
 
     private readonly HashSet<NoteText> _texts = [];
     private readonly HashSet<NoteCheckbox> _checkboxes = [];
 
+    public IReadOnlyCollection<NoteText> Texts => _texts.ToList();
+    public IReadOnlyCollection<NoteCheckbox> Checkboxes => _checkboxes.ToList();
+
     public static Note Create(
         string title, 
-        Label label)
+        Guid? labelId)
     {
         return new Note(
             Guid.NewGuid(), 
-            title, 
-            label);
+            title,
+            labelId);
     }
 
     public void AddText(string text)
     {
-        _texts.Add(new NoteText(Guid.NewGuid(), text));
+        _texts.Add(new NoteText(Guid.NewGuid(), text, Id));
     }
 
     public void AddCheckbox(string text, bool isChecked)
     {
-        _checkboxes.Add(new NoteCheckbox(Guid.NewGuid(), text, isChecked));
+        _checkboxes.Add(new NoteCheckbox(Guid.NewGuid(), text, isChecked, Id));
     }
 
     public void UpdateText(Guid id, string text)
@@ -105,5 +108,10 @@ public sealed class Note : AggregateRoot
         }
 
         _checkboxes.Remove(checkbox);
+    }
+
+    public void SetLabel(Guid? labelId)
+    {
+        LabelId = labelId;
     }
 }

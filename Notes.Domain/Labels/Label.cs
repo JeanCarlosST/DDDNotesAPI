@@ -19,4 +19,6 @@ public sealed class Label : Entity
     }
 
     private readonly HashSet<Note> _notes = [];
+
+    public IReadOnlyCollection<Note> Notes => _notes.ToList();
 }
