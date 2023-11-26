@@ -12,13 +12,13 @@ public class NoteRepository(AppDbContext appDbContext) : INoteRepository
         _appDbContext.Notes.Add(note);
     }
 
-    public async Task<Note?> GetByIdAsync(Guid id)
+    public async Task<Note?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _appDbContext
             .Notes
             .Include(x => x.Texts)
             .Include(x => x.Checkboxes)
-            .SingleOrDefaultAsync(x => x.Id == id);
+            .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
     public void Remove(Note note)

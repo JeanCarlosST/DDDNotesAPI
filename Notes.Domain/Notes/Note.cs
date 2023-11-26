@@ -43,75 +43,23 @@ public sealed class Note : AggregateRoot
         _checkboxes.Add(new NoteCheckbox(Guid.NewGuid(), text, isChecked, order, Id));
     }
 
-    public void UpdateText(Guid id, string text)
+    public void UpdateTitle(string title)
     {
-        var noteText = _texts.FirstOrDefault(t => t.Id == id);
-
-        if(noteText is null)
-        {
-            return;
-        }
-
-        if(string.IsNullOrEmpty(text))
-        {
-            RemoveText(id);
-        }
-        else
-        {
-            noteText.UpdateText(text);
-        }
+        Title = title;
     }
 
-    public void UpdateCheckbox(Guid id, bool isChecked)
-    {
-        var checkbox = _checkboxes.FirstOrDefault(c => c.Id == id);
-
-        if(checkbox is null)
-        {
-            return;
-        }
-
-        checkbox.UpdateIsChecked(isChecked);
-    }
-
-    public void UpdateCheckboxText(Guid id, string text)
-    {
-        var checkbox = _checkboxes.FirstOrDefault(c => c.Id == id);
-
-        if(checkbox is null)
-        {
-            return;
-        }
-
-        checkbox.UpdateText(text);
-    }
-
-    public void RemoveText(Guid id)
-    {
-        var noteText = _texts.FirstOrDefault(t => t.Id == id);
-
-        if(noteText is null)
-        {
-            return;
-        }
-
-        _texts.Remove(noteText);
-    }
-
-    public void RemoveCheckbox(Guid id)
-    {
-        var checkbox = _checkboxes.FirstOrDefault(c => c.Id == id);
-
-        if(checkbox is null)
-        {
-            return;
-        }
-
-        _checkboxes.Remove(checkbox);
-    }
-
-    public void SetLabel(Guid? labelId)
+    public void UpdateLabelId(Guid? labelId)
     {
         LabelId = labelId;
+    }
+
+    public void ClearTexts()
+    {
+        _texts.Clear();
+    }
+
+    public void ClearCheckboxes()
+    {
+        _checkboxes.Clear();
     }
 }

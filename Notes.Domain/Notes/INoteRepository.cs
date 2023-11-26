@@ -2,7 +2,7 @@
 
 public interface INoteRepository
 {
-    Task<Note?> GetByIdAsync(Guid id);
+    Task<Note?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
     void Add(Note note);
 

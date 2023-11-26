@@ -1,8 +1,11 @@
-﻿namespace Notes.Application.Notes.Queries;
+﻿using Notes.Application.Labels.Queries;
+
+namespace Notes.Application.Notes.Queries;
 
 public record NoteResponse(
     Guid NoteId,
     string Title,
+    LabelResponse? Label,
     List<INoteElement> Elements);
 
 public interface INoteElement
