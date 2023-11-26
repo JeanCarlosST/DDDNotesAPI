@@ -1,6 +1,6 @@
 ﻿namespace Notes.Application.Notes.Queries;
 
-public record NoteReponse(
+public record NoteResponse(
     Guid NoteId,
     string Title,
     List<INoteElement> Elements);

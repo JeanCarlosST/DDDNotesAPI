@@ -47,7 +47,7 @@ public sealed class Note : AggregateRoot
     {
         var noteText = _texts.FirstOrDefault(t => t.Id == id);
 
-        if(noteText == null)
+        if(noteText is null)
         {
             return;
         }
@@ -66,7 +66,7 @@ public sealed class Note : AggregateRoot
     {
         var checkbox = _checkboxes.FirstOrDefault(c => c.Id == id);
 
-        if(checkbox == null)
+        if(checkbox is null)
         {
             return;
         }
@@ -78,7 +78,7 @@ public sealed class Note : AggregateRoot
     {
         var checkbox = _checkboxes.FirstOrDefault(c => c.Id == id);
 
-        if(checkbox == null)
+        if(checkbox is null)
         {
             return;
         }
@@ -90,7 +90,7 @@ public sealed class Note : AggregateRoot
     {
         var noteText = _texts.FirstOrDefault(t => t.Id == id);
 
-        if(noteText == null)
+        if(noteText is null)
         {
             return;
         }
@@ -102,7 +102,7 @@ public sealed class Note : AggregateRoot
     {
         var checkbox = _checkboxes.FirstOrDefault(c => c.Id == id);
 
-        if(checkbox == null)
+        if(checkbox is null)
         {
             return;
         }

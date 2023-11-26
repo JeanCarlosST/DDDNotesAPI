@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Notes.Application.Labels;
 using Notes.Application.Labels.Commands;
 using Notes.Application.Labels.Queries;
+using Shared;
 
 namespace Notes.Presentation.Endpoints;
 
@@ -23,9 +25,14 @@ public static class LabelEndpoints
         group.MapGet("{labelId:Guid}", async (Guid labelId, ISender sender) =>
         {
             var query = new GetLabelQuery(labelId);
-            LabelResponse label = await sender.Send(query);
+            Result<LabelResponse> labelResponse = await sender.Send(query);
 
-            return Results.Ok(label);
+            if(labelResponse.IsFailure && labelResponse.Error == LabelErrors.LabelNotFound)
+            {
+                return Results.NotFound(labelResponse.Error.Description);
+            }
+
+            return Results.Ok(labelResponse);
         });
 
         group.MapGet("", async (ISender sender) =>

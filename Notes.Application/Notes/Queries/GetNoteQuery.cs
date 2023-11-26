@@ -1,22 +1,23 @@
 ﻿using MediatR;
 using Notes.Domain.Notes;
+using Shared;
 
 namespace Notes.Application.Notes.Queries;
 
-public record GetNoteQuery(Guid NoteId) : IRequest<NoteReponse?>;
+public record GetNoteQuery(Guid NoteId) : IRequest<Result<NoteResponse>>;
 
 public sealed class GetNoteQueryHandler(
-    INoteRepository noteRepository) : IRequestHandler<GetNoteQuery, NoteReponse?>
+    INoteRepository noteRepository) : IRequestHandler<GetNoteQuery, Result<NoteResponse>>
 {
     private readonly INoteRepository _noteRepository = noteRepository;
 
-    async Task<NoteReponse?> IRequestHandler<GetNoteQuery, NoteReponse?>.Handle(GetNoteQuery request, CancellationToken cancellationToken)
+    async Task<Result<NoteResponse>> IRequestHandler<GetNoteQuery, Result<NoteResponse>>.Handle(GetNoteQuery request, CancellationToken cancellationToken)
     {
         Note? note = await _noteRepository.GetByIdAsync(request.NoteId);
 
-        if (note == null)
+        if (note is null)
         {
-            return null;
+            return Result.Failure<NoteResponse>(NoteErrors.NoteNotFound);
         }
 
         List<INoteElement> elements =
@@ -29,12 +30,11 @@ public sealed class GetNoteQueryHandler(
                 .Select(t => new NoteCheckboxReponse(t.Id, t.Text, t.IsChecked, t.Order)),
         ];
 
-        NoteReponse response = new(
+        NoteResponse response = new(
             note.Id,
             note.Title,
             [.. elements.OrderBy(e => e.Order)]);
 
-        return await Task.FromResult(response);
+        return response;
     }
 }
-
