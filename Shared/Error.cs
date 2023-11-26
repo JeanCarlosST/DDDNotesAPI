@@ -1,4 +1,4 @@
-﻿namespace Shared;
+﻿namespace Notes.Shared;
 
 public sealed record Error(string code, string? Description = null)
 {

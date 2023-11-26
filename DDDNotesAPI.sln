@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.Infrastructure", "Not
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.Domain", "Notes.Domain\Notes.Domain.csproj", "{F1593CA7-E662-46F6-BC65-4E3B0B934285}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{F5B42609-87EE-40DB-99DE-CFFDC5F022C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.Shared", "Shared\Notes.Shared.csproj", "{F5B42609-87EE-40DB-99DE-CFFDC5F022C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

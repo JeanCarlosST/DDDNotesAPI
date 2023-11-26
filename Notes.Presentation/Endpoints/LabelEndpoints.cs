@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Routing;
 using Notes.Application.Labels;
 using Notes.Application.Labels.Commands;
 using Notes.Application.Labels.Queries;
-using Shared;
+using Notes.Shared;
 
 namespace Notes.Presentation.Endpoints;
 

@@ -4,7 +4,7 @@ using Notes.Application.Labels.Queries;
 using Notes.Domain;
 using Notes.Domain.Labels;
 using Notes.Infrastructure;
-using Shared;
+using Notes.Shared;
 
 namespace Notes.Application.Labels.Commands;
 

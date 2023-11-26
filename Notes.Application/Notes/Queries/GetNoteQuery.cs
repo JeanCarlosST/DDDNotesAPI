@@ -2,7 +2,7 @@
 using Notes.Application.Labels.Queries;
 using Notes.Domain.Labels;
 using Notes.Domain.Notes;
-using Shared;
+using Notes.Shared;
 
 namespace Notes.Application.Notes.Queries;
 

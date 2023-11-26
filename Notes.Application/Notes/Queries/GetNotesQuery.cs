@@ -5,7 +5,7 @@ using Notes.Domain;
 using Notes.Domain.Labels;
 using Notes.Domain.Notes;
 using Notes.Infrastructure;
-using Shared;
+using Notes.Shared;
 
 namespace Notes.Application.Notes.Queries;
 
@@ -13,12 +13,10 @@ public record GetNotesQuery : IRequest<Result<List<NoteResponse>>>;
 
 public sealed class GetNotesQueryHandler(
     AppDbContext appDbContext,
-    ILabelRepository labelRepository,
-    IUnitOfWork unitOfWork) : IRequestHandler<GetNotesQuery, Result<List<NoteResponse>>>
+    ILabelRepository labelRepository) : IRequestHandler<GetNotesQuery, Result<List<NoteResponse>>>
 {
     private readonly AppDbContext _appDbContext = appDbContext;
     private readonly ILabelRepository _labelRepository = labelRepository;
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<Result<List<NoteResponse>>> Handle(GetNotesQuery request, CancellationToken cancellationToken)
     {

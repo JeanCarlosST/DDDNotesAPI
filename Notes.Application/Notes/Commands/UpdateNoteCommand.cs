@@ -5,7 +5,7 @@ using Notes.Application.Notes.Queries;
 using Notes.Domain;
 using Notes.Domain.Labels;
 using Notes.Domain.Notes;
-using Shared;
+using Notes.Shared;
 using System.Text.Json;
 
 namespace Notes.Application.Notes.Commands;

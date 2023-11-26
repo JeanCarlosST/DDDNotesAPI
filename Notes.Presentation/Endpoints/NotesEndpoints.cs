@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Routing;
 using Notes.Application.Notes;
 using Notes.Application.Notes.Commands;
 using Notes.Application.Notes.Queries;
-using Shared;
+using Notes.Shared;
 
 namespace Notes.Presentation.Endpoints;
 

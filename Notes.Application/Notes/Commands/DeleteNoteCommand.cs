@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Notes.Domain;
 using Notes.Domain.Notes;
-using Shared;
+using Notes.Shared;
 
 namespace Notes.Application.Notes.Commands;
 

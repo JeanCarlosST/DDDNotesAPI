@@ -1,4 +1,4 @@
-﻿using Shared;
+﻿using Notes.Shared;
 
 namespace Notes.Application.Notes;
 
