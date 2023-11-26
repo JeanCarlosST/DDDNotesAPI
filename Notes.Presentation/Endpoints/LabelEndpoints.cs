@@ -39,5 +39,31 @@ public static class LabelEndpoints
         {
             return await sender.Send(new GetLabelsQuery());
         });
+
+        group.MapPut("{labelId:Guid}", async (Guid labelId, string name, ISender sender) =>
+        {
+            var command = new UpdateLabelCommand(labelId, name);
+            Result<LabelResponse> result = await sender.Send(command);
+
+            if (result.IsFailure)
+            {
+                return Results.BadRequest(result.Error.Description);
+            }
+
+            return Results.Ok(result.Value);
+        });
+
+        group.MapDelete("{labelId:Guid}", async (Guid labelId, ISender sender) =>
+        {
+            var command = new DeleteLabelCommand(labelId);
+            Result result = await sender.Send(command);
+
+            if(result.IsFailure && result.Error == LabelErrors.LabelNotFound)
+            {
+                return Results.NotFound(result.Error.Description);
+            }
+
+            return Results.NoContent();
+        });
     }
 }

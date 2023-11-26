@@ -9,9 +9,7 @@ public class NoteRepository(AppDbContext appDbContext) : INoteRepository
 
     public void Add(Note note)
     {
-        _appDbContext
-            .Notes
-            .Add(note);
+        _appDbContext.Notes.Add(note);
     }
 
     public async Task<Note?> GetByIdAsync(Guid id)
@@ -21,6 +19,15 @@ public class NoteRepository(AppDbContext appDbContext) : INoteRepository
             .Include(x => x.Texts)
             .Include(x => x.Checkboxes)
             .SingleOrDefaultAsync(x => x.Id == id);
-            
+    }
+
+    public void Remove(Note note)
+    {
+        _appDbContext.Notes.Remove(note);
+    }
+
+    public void Update(Note note)
+    {
+        _appDbContext.Notes.Update(note);
     }
 }
