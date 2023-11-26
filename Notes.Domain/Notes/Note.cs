@@ -33,14 +33,14 @@ public sealed class Note : AggregateRoot
             labelId);
     }
 
-    public void AddText(string text)
+    public void AddText(string text, int order)
     {
-        _texts.Add(new NoteText(Guid.NewGuid(), text, Id));
+        _texts.Add(new NoteText(Guid.NewGuid(), text, order, Id));
     }
 
-    public void AddCheckbox(string text, bool isChecked)
+    public void AddCheckbox(string text, bool isChecked, int order)
     {
-        _checkboxes.Add(new NoteCheckbox(Guid.NewGuid(), text, isChecked, Id));
+        _checkboxes.Add(new NoteCheckbox(Guid.NewGuid(), text, isChecked, order, Id));
     }
 
     public void UpdateText(Guid id, string text)

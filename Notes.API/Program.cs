@@ -1,23 +1,16 @@
 using Notes.Application;
 using Notes.Presentation;
 using Notes.Infrastructure;
-using Microsoft.EntityFrameworkCore;
+using Notes.Presentation.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(
-    optionsBuilder =>
-    {
-        string connectionString = builder.Configuration.GetConnectionString("ConnectionString")!;
-        optionsBuilder.UseSqlServer(connectionString);
-    });
-
 builder.Services
     .AddApplication()
-    .AddInfrastructure()
+    .AddInfrastructure(builder.Configuration)
     .AddPresentation();
 
 var app = builder.Build();
@@ -29,5 +22,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapNotesEndpoints();
+app.MapLabelEndpoints();
 
 app.Run();

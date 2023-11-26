@@ -2,7 +2,7 @@
 
 namespace Notes.Infrastructure;
 
-internal sealed class UnitOfWork(AppDbContext appDbContext) : IUnitOfWork
+public sealed class UnitOfWork(AppDbContext appDbContext) : IUnitOfWork
 {
     private readonly AppDbContext _appDbContext = appDbContext;
 

@@ -9,5 +9,7 @@ internal class NoteCheckboxConfiguration : IEntityTypeConfiguration<NoteCheckbox
     public void Configure(EntityTypeBuilder<NoteCheckbox> builder)
     {
         builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Order).IsRequired();
     }
 }

@@ -12,13 +12,6 @@ public class LabelRepository(AppDbContext appDbContext) : ILabelRepository
         _appDbContext.Add(label);
     }
 
-    public async Task<Label?> GetByIdAsync(Guid id)
-    {
-        return await _appDbContext
-            .Set<Label>()
-            .SingleOrDefaultAsync(l => l.Id == id);
-    }
-
     public void Remove(Label label)
     {
         _appDbContext.Remove(label);
